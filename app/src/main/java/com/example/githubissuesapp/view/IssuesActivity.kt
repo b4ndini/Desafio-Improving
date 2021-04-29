@@ -12,6 +12,13 @@ class IssuesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityIssuesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
+    }
+
+
+
     }
 
 }
