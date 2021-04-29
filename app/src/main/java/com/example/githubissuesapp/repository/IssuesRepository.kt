@@ -6,7 +6,7 @@ import io.reactivex.Observable
 
 class IssuesRepository {
 
-    fun getIssues(query: String): Observable<Issues> {
+    fun getIssues(): Observable<Issues> {
 
         return ApiService.api.getIssues()
 

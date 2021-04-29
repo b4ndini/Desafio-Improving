@@ -10,7 +10,7 @@ data class User(
     val followers_url: String,
     val following_url: String,
     val gists_url: String,
-    val gravatar_id: String,
+    val avatar_id: String,
     val html_url: String,
     val id: Int,
     val login: String,

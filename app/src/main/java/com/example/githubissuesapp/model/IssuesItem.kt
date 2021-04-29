@@ -15,7 +15,8 @@ data class IssuesItem(
     @SerializedName("created_at")
     val createdAt: String,
     val events_url: String,
-    val html_url: String,
+    @SerializedName("html_url")
+    val htmlUrl: String,
     val id: Int,
     val labels: List<Any>,
     val labels_url: String,
