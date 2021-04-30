@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubissuesapp.R
 import com.example.githubissuesapp.model.IssuesItem
 
-class IssuesAdapter(val issues: ArrayList<IssuesItem>
+class IssuesAdapter(
+        private val issues: ArrayList<IssuesItem>,
+        private val onItemClicked: (Int) -> Unit
 ) : RecyclerView.Adapter<IssuesAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IssuesAdapter.ViewHolder {
@@ -18,7 +21,7 @@ class IssuesAdapter(val issues: ArrayList<IssuesItem>
     }
 
     override fun onBindViewHolder(holder:IssuesAdapter.ViewHolder, position: Int) {
-        holder.bind(issues[position])
+        holder.bind(issues[position], onItemClicked)
     }
 
     override fun getItemCount(): Int {
@@ -27,15 +30,20 @@ class IssuesAdapter(val issues: ArrayList<IssuesItem>
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        fun bind(issue: IssuesItem) = with(itemView){
+        fun bind(issue: IssuesItem, onItemClicked: (Int) -> Unit) = with(itemView){
 
             findViewById<TextView>(R.id.tvIssueName).text = issue.title
-            if(issue.state.equals("open", true)){
+
+            if(issue.state.equals("open", true)) {
                 findViewById<TextView>(R.id.tvState).setTextColor(Color.GREEN)
-            }else{
-                findViewById<TextView>(R.id.tvState).setTextColor(Color.RED)
             }
+
             findViewById<TextView>(R.id.tvState).text = issue.state
+
+            findViewById<ConstraintLayout>(R.id.container).setOnClickListener {
+                onItemClicked(this@ViewHolder.adapterPosition)
+            }
+
         /*  if(fact.value.length > 80){
                 findViewById<TextView>(R.id.tvChuckJoke).setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
             }

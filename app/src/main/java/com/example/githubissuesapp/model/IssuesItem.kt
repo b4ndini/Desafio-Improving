@@ -23,6 +23,7 @@ data class IssuesItem(
     val locked: Boolean,
     val milestone: Any,
     val node_id: String,
+    @SerializedName("number")
     val number: Int,
     val performed_via_github_app: Any,
     val pull_request: PullRequest,

@@ -1,5 +1,6 @@
 package com.example.githubissuesapp.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -33,7 +34,12 @@ class IssuesActivity : AppCompatActivity() {
                 binding.tvErrorMsg.visibility = View.GONE
                 binding.rvIssuesList.apply {
                     layoutManager = LinearLayoutManager(this@IssuesActivity)
-                    adapter = IssuesAdapter(it)
+                    adapter = IssuesAdapter(it){ position ->
+                        val intent = Intent(this@IssuesActivity, IssueDetailActivity::class.java).apply {
+                            putExtra("issue_number", it[position].number)
+                        }
+                        startActivity(intent)
+                    }
 
                 }
             }
