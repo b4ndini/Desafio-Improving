@@ -8,7 +8,7 @@ data class IssuesItem(
     val assignees: List<Any>,
     val author_association: String,
     @SerializedName("body")
-    val body: String,
+    val body: String?,
     val closed_at: Any,
     val comments: Int,
     val comments_url: String,

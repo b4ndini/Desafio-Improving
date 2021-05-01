@@ -1,12 +1,14 @@
 package com.example.githubissuesapp.view
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.githubissuesapp.R
 import com.example.githubissuesapp.databinding.ActivityIssueDetailBinding
+import com.example.githubissuesapp.utils.formatDateToPtBr
 import com.example.githubissuesapp.viewModel.IssueDetailViewModel
 
 class IssueDetailActivity : AppCompatActivity() {
@@ -32,11 +34,28 @@ class IssueDetailActivity : AppCompatActivity() {
         viewModel.issueDetailLiveData.observe(this, {
             it?.let{
 
-                var date = it.createdAt.replace("-", "/", true)
+               // var date = it.createdAt.replace("-", "/", true)
                 binding.tvIssueTitle.text = it.title
-                binding.tvDescription.text = "Description:\n\n" + it.body
-                binding.tvDate.text = "At " + date.substring(0, 10)
-                Glide.with(this).load(it.user.avatarUrl).placeholder(R.drawable.ic_launcher_background).into(binding.ivOwnerImage);
+                if(it.body.isNullOrEmpty()){
+                binding.tvDescription.text = "Description:\n\nThere's no description"
+                }else{
+                    binding.tvDescription.text = "Description: \n\n${it.body}"
+                }
+
+                //binding.tvDate.text = "At " + date.substring(0, 10)
+                binding.tvDate.text = it.createdAt.formatDateToPtBr()
+                Glide.with(this)
+                    .load(it.user.avatarUrl)
+                    .into(binding.ivOwnerImage)
+
+                val issue = it
+                binding.btnLink.setOnClickListener{
+                    val url: String = issue.htmlUrl
+                    val intent = Intent(Intent.ACTION_VIEW);
+                    intent.data = Uri.parse(url);
+                    startActivity(intent)
+                }
+
 
 
             }
