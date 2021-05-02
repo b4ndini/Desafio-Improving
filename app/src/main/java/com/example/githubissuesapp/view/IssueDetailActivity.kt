@@ -10,11 +10,12 @@ import com.bumptech.glide.Glide
 import com.example.githubissuesapp.databinding.ActivityIssueDetailBinding
 import com.example.githubissuesapp.utils.formatDateToPtBr
 import com.example.githubissuesapp.viewModel.IssueDetailViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class IssueDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityIssueDetailBinding
-    private lateinit var viewModel: IssueDetailViewModel
+    private val viewModel: IssueDetailViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +23,7 @@ class IssueDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val issueNumber = intent.getIntExtra("issue_number", 0)
-        viewModel = ViewModelProvider(this).get(IssueDetailViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(IssueDetailViewModel::class.java)
 
 
         observes()
@@ -34,16 +35,19 @@ class IssueDetailActivity : AppCompatActivity() {
         viewModel.issueDetailLiveData.observe(this, {
             it?.let{
 
-               // var date = it.createdAt.replace("-", "/", true)
+
                 binding.tvIssueTitle.text = it.title
                 if(it.body.isNullOrEmpty()){
-                binding.tvDescription.text = "Description:\n\nThere's no description"
-                }else{
-                    binding.tvDescription.text = "Description: \n\n${it.body}"
+                    val empty = "Description:\n\nNo description provided."
+                    binding.tvDescription.text = empty
+                }else {
+                    val text = "Description: \n\n${it.body}"
+                    binding.tvDescription.text = text
                 }
 
-                //binding.tvDate.text = "At " + date.substring(0, 10)
+
                 binding.tvDate.text = it.createdAt.formatDateToPtBr()
+
                 Glide.with(this)
                     .load(it.user.avatarUrl)
                     .into(binding.ivOwnerImage)

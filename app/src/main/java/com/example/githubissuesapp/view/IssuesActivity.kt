@@ -9,18 +9,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubissuesapp.databinding.ActivityIssuesBinding
 import com.example.githubissuesapp.view.adapter.IssuesAdapter
 import com.example.githubissuesapp.viewModel.IssuesViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class IssuesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityIssuesBinding
-    private lateinit var viewModel: IssuesViewModel
+    private val viewModel: IssuesViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIssuesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this).get(IssuesViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(IssuesViewModel::class.java)
 
         observes()
         viewModel.getIssues()

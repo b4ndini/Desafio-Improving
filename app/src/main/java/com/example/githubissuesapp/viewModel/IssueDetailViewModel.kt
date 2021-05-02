@@ -9,11 +9,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class IssueDetailViewModel : ViewModel(){
+class IssueDetailViewModel(private val repository: IssuesRepository) : ViewModel(){
 
-    private val repository by lazy{
+    /*private val repository by lazy{
         IssuesRepository()
-    }
+    }*/
 
     private lateinit var disposable: Disposable
     var issueDetailLiveData: MutableLiveData<IssuesItem> = MutableLiveData()
