@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GitHub Issues App</string>
+    <string name="created_by">Created by:</string>
+    <string name="go_to_the_page">Go to the Page</string>
 </resources>

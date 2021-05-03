@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -23,7 +24,7 @@ class IssueDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val issueNumber = intent.getIntExtra("issue_number", 0)
-        //viewModel = ViewModelProvider(this).get(IssueDetailViewModel::class.java)
+
 
 
         observes()
@@ -35,6 +36,7 @@ class IssueDetailActivity : AppCompatActivity() {
         viewModel.issueDetailLiveData.observe(this, {
             it?.let{
 
+                binding.tvErrorMsg.visibility = View.GONE
 
                 binding.tvIssueTitle.text = it.title
                 if(it.body.isNullOrEmpty()){
@@ -67,7 +69,8 @@ class IssueDetailActivity : AppCompatActivity() {
 
         viewModel.errorMsgLiveData.observe(this,{
             it?.let{
-                Toast.makeText(applicationContext, it, Toast.LENGTH_LONG).show()
+                binding.tvErrorMsg.text = it
+                binding.tvErrorMsg.visibility = View.VISIBLE
             }
         })
     }

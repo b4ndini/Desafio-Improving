@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface GitHubApi {
 
-    // /repos/{owner}/{repo}/issues
+
     @GET("repos/{owner}/{repo}/issues")
     fun getIssues(
         @Path("owner") owner: String = "JetBrains",

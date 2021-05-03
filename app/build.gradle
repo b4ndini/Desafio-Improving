@@ -43,7 +43,12 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
+    //Tests
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'io.mockk:mockk:1.9.3'
+
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     //Retrofit
@@ -60,11 +65,11 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
-    //circle image view
+    //Circle Image View
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //Koin
-    def koin_version = '2.2.2'
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation 'org.koin:koin-android:2.2.2'
+    implementation 'org.koin:koin-androidx-scope:2.2.2'
+    implementation 'org.koin:koin-androidx-viewmodel:2.2.2'
+
 }

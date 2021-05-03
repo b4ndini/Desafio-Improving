@@ -11,9 +11,6 @@ import io.reactivex.schedulers.Schedulers
 
 class IssuesViewModel(private val repository: IssuesRepository): ViewModel() {
 
-    /*private val repository by lazy{
-        IssuesRepository()
-    }*/
 
     private lateinit var disposable: Disposable
     var issuesLiveData: MutableLiveData<Issues> = MutableLiveData()

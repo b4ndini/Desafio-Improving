@@ -21,7 +21,6 @@ class IssuesActivity : AppCompatActivity() {
         binding = ActivityIssuesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //viewModel = ViewModelProvider(this).get(IssuesViewModel::class.java)
 
         observes()
         viewModel.getIssues()
@@ -54,14 +53,6 @@ class IssuesActivity : AppCompatActivity() {
         })
     }
 
-/*    private fun updateUI(issues: Issues) {
-        binding.rvIssuesList.apply {
-            layoutManager = LinearLayoutManager(this@IssuesActivity)
-            adapter = IssuesAdapter(issues)
-
-        }
-
-    }*/
 
 
 }

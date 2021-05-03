@@ -44,35 +44,6 @@ class IssuesAdapter(
                 onItemClicked(this@ViewHolder.adapterPosition)
             }
 
-        /*  if(fact.value.length > 80){
-                findViewById<TextView>(R.id.tvChuckJoke).setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-            }
-            findViewById<TextView>(R.id.tvChuckJoke).text = fact.value
-
-            val empty = "uncategorized"
-            if(fact.categories.isNullOrEmpty()) {
-                findViewById<TextView>(R.id.tvCategory).text = empty
-            }
-            else {
-                findViewById<TextView>(R.id.tvCategory).text = fact.categories[0]
-            }
-
-
-
-
-
-            findViewById<ImageView>(R.id.ivShareButton).setOnClickListener{
-                val intent= Intent()
-                val link = fact.url
-                intent.action = Intent.ACTION_SEND
-                intent.type= "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT,"Chuck Norris Fact:\n $link")
-                context.startActivity(Intent.createChooser(intent, "Compartilhar com"))
-            }*/
-
-
-
-
         }
 
     }
