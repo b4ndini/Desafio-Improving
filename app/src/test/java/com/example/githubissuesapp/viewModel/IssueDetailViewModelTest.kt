@@ -23,7 +23,7 @@ class IssueDetailViewModelTest{
 
     @Before
     fun beforeTest() {
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler(Function { Schedulers.trampoline() })
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler{Schedulers.trampoline()}
     }
 
     private val repository = mockk<IssuesRepository>()

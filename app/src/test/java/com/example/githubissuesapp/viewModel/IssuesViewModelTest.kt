@@ -24,7 +24,7 @@ class IssuesViewModelTest{
 
     @Before
     fun beforeTest() {
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler(Function { Schedulers.trampoline() })
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler{Schedulers.trampoline()}
     }
 
 
